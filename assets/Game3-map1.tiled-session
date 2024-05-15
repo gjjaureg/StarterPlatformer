@@ -7,7 +7,11 @@
     "expandedProjectPaths": [
     ],
     "fileStates": {
+        "": {
+            "scaleInDock": 1
+        }
     },
+    "last.imagePath": "C:/Users/thyBl/OneDrive/Documents/GitHub/StarterPlatformer/assets",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 18,
     "map.tileWidth": 18,
@@ -16,5 +20,10 @@
     ],
     "project": "Game3-map1.tiled-project",
     "recentFiles": [
-    ]
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 18,
+        "width": 18
+    }
 }
