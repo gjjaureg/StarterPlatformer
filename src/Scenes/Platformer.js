@@ -20,7 +20,7 @@ class Platformer extends Phaser.Scene {
         // First parameter: name we gave the tileset in Tiled
         // Second parameter: key for the tilesheet (from this.load.image in Load.js)
         this.tileset = this.map.addTilesetImage("kenny_tilemap_packed", "tilemap_tiles");
-
+ 
         // Create a layer
         this.groundLayer = this.map.createLayer("Ground-n-Platforms", this.tileset, 0, 0);
         this.groundLayer.setScale(2.0);
@@ -39,6 +39,8 @@ class Platformer extends Phaser.Scene {
 
         // set up Phaser-provided cursor key input
         cursors = this.input.keyboard.createCursorKeys();
+
+        this.nextScene = this.input.keyboard.addKey("S");
 
         // debug key listener (assigned to D key)
         this.input.keyboard.on('keydown-D', () => {
@@ -75,6 +77,9 @@ class Platformer extends Phaser.Scene {
         if(my.sprite.player.body.blocked.down && Phaser.Input.Keyboard.JustDown(cursors.up)) {
             my.sprite.player.body.setVelocityY(this.JUMP_VELOCITY);
 
+        }
+        if (Phaser.Input.Keyboard.JustDown(this.nextScene)) {
+            this.scene.start("loadScene2");
         }
     }
 }
