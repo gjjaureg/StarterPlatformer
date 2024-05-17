@@ -2,6 +2,7 @@ class Platformer extends Phaser.Scene {
     constructor() {
         super("platformerScene");
         this.count = 0;
+        
     }
 
     init() {
