@@ -19,7 +19,7 @@ class Platformer2 extends Phaser.Scene {
         // Add a tileset to the map
         // First parameter: name we gave the tileset in Tiled
         // Second parameter: key for the tilesheet (from this.load.image in Load.js)
-        this.tileset = this.map.addTilesetImage("kenny_tilemap_packed_food", "tilemap_tiles");
+        this.tileset = this.map.addTilesetImage("kenny_tilemap_packed_food", "tilemap_tiles_food");
 
         // Create a layer
         this.groundLayer = this.map.createLayer("Ground-n-Platforms", this.tileset, 0, 0);

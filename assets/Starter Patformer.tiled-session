@@ -6,6 +6,7 @@
     "activeFile": "",
     "expandedProjectPaths": [
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
             "scaleInDock": 1,
@@ -15,8 +16,8 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 482,
-                "y": 180.66666666666663
+                "x": 753.3333333333333,
+                "y": 173.33333333333331
             }
         },
         "platformer-level-1.tmj#kenny_tilemap_packed": {
@@ -26,8 +27,8 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 495.5,
-                "y": 184.5
+                "x": 309,
+                "y": 205
             }
         },
         "platformer-level-2.tmj#keny_tilemap_packed_food": {
@@ -35,7 +36,7 @@
             "scaleInEditor": 1
         }
     },
-    "last.imagePath": "C:/Users/thyBl/Downloads/kenney_pixel-platformer-food-expansion/Tilemap",
+    "last.imagePath": "/Users/gabrieljauregui76/Documents/GitHub/StarterPlatformer/assets",
     "map.lastUsedFormat": "json",
     "map.tileHeight": 18,
     "map.tileWidth": 18,
@@ -46,8 +47,8 @@
     "project": "Starter Patformer.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "platformer-level-2.tmj",
-        "platformer-level-1.tmj"
+        "platformer-level-1.tmj",
+        "platformer-level-2.tmj"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {
