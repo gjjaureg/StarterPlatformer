@@ -14,7 +14,7 @@ class Platformer extends Phaser.Scene {
     create() {
         // Create a new tilemap game object which uses 18x18 pixel tiles, and is
         // 45 tiles wide and 25 tiles tall.
-        this.map = this.add.tilemap("platformer-level-1", 18, 18, 45, 25);
+        this.map = this.add.tilemap("platformer-level-1", 18, 18, 100, 20);
 
         // Add a tileset to the map
         // First parameter: name we gave the tileset in Tiled
@@ -30,12 +30,24 @@ class Platformer extends Phaser.Scene {
             collides: true
         });
 
+        this.coins = this.map.createFromObjects("Objects", {
+            name: "coin",
+            key: "tilemap_sheet",
+            frame: 151
+        });
+
+        this.coinGroup = this.add.group(this.coins);
+
         // set up player avatar
-        my.sprite.player = this.physics.add.sprite(game.config.width/4, game.config.height/2, "platformer_characters", "tile_0000.png").setScale(SCALE)
+        my.sprite.player = this.physics.add.sprite(game.config.width/11, game.config.height/2, "platformer_characters", "tile_0000.png").setScale(SCALE)
         my.sprite.player.setCollideWorldBounds(true);
 
         // Enable collision handling
         this.physics.add.collider(my.sprite.player, this.groundLayer);
+
+        this.physics.add.overlap(my.sprite.player, this.coinGroup, (obj1, obj2) => {
+            obj2.destroy(); // remove coin on overlap
+        });
 
         // set up Phaser-provided cursor key input
         cursors = this.input.keyboard.createCursorKeys();
@@ -47,6 +59,11 @@ class Platformer extends Phaser.Scene {
             this.physics.world.drawDebug = this.physics.world.drawDebug ? false : true
             this.physics.world.debugGraphic.clear()
         }, this);
+
+        this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+        this.cameras.main.startFollow(my.sprite.player, true, 0.25, 0.25); // (target, [,roundPixels][,lerpX][,lerpY])
+        this.cameras.main.setDeadzone(50, 50);
+        this.cameras.main.setZoom(this.SCALE);
 
     }
 

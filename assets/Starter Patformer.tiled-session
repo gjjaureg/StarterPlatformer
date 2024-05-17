@@ -3,8 +3,9 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "platformer-level-1.tmj",
     "expandedProjectPaths": [
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -16,20 +17,26 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 753.3333333333333,
-                "y": 173.33333333333331
+                "x": 1070,
+                "y": 171.33333333333331
             }
         },
         "platformer-level-1.tmj#kenny_tilemap_packed": {
             "scaleInDock": 1
         },
         "platformer-level-2.tmj": {
+            "expandedObjectLayers": [
+                2
+            ],
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 309,
-                "y": 205
+                "x": 899.5,
+                "y": 179.5
             }
+        },
+        "platformer-level-2.tmj#kenny_tilemap_packed_food": {
+            "scaleInDock": 1
         },
         "platformer-level-2.tmj#keny_tilemap_packed_food": {
             "scaleInDock": 1,
@@ -42,13 +49,14 @@
     "map.tileWidth": 18,
     "map.width": 100,
     "openFiles": [
-        "platformer-level-2.tmj"
+        "platformer-level-2.tmj",
+        "platformer-level-1.tmj"
     ],
     "project": "Starter Patformer.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "platformer-level-1.tmj",
-        "platformer-level-2.tmj"
+        "platformer-level-2.tmj",
+        "platformer-level-1.tmj"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {
