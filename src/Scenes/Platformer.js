@@ -1,6 +1,7 @@
 class Platformer extends Phaser.Scene {
     constructor() {
         super("platformerScene");
+        this.count = 0;
     }
 
     init() {
@@ -12,7 +13,7 @@ class Platformer extends Phaser.Scene {
     }
 
     create() {
-        let count = 0
+        
         // Create a new tilemap game object which uses 18x18 pixel tiles, and is
         // 45 tiles wide and 25 tiles tall.
         this.map = this.add.tilemap("platformer-level-1", 18, 18, 80, 20);
@@ -53,14 +54,14 @@ class Platformer extends Phaser.Scene {
         
         // set up player avatar
         my.sprite.player = this.physics.add.sprite(game.config.width/11, game.config.height/2, "platformer_characters", "tile_0000.png").setScale(SCALE)
-        my.sprite.player.setCollideWorldBounds(true);
+        //my.sprite.player.setCollideWorldBounds(true);
 
         // Enable collision handling
         this.physics.add.collider(my.sprite.player, this.groundLayer);
 
         this.physics.add.overlap(my.sprite.player, this.coinGroup, (obj1, obj2) => {
             obj2.destroy(); // remove coin on overlap
-            count += 1 
+            this.count += 1 
         });
 
         // set up Phaser-provided cursor key input
@@ -110,8 +111,13 @@ class Platformer extends Phaser.Scene {
             my.sprite.player.body.setVelocityY(this.JUMP_VELOCITY);
 
         }
+
         if (Phaser.Input.Keyboard.JustDown(this.nextScene)) {
             this.scene.start("loadScene2");
         }
+
+       // if (this.count >= 32) {
+           // this.scene.start("loadScene2");
+      //  }
     }
 }

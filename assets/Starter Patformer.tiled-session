@@ -14,11 +14,14 @@
             "scaleInEditor": 1
         },
         "platformer-level-1.tmj": {
+            "expandedObjectLayers": [
+                2
+            ],
             "scale": 0.75,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 1396.6666666666665,
-                "y": 224.66666666666663
+                "x": 1401.3333333333333,
+                "y": 169.99999999999997
             }
         },
         "platformer-level-1.tmj#kenny_tilemap_packed": {
@@ -29,10 +32,10 @@
                 2
             ],
             "scale": 1,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 899.5,
-                "y": 179.5
+                "x": 25,
+                "y": 315.5
             }
         },
         "platformer-level-2.tmj#kenny_tilemap_packed_food": {

@@ -12,9 +12,11 @@ class Platformer2 extends Phaser.Scene {
     }
 
     create() {
+        let count = 0
+        let end = false
         // Create a new tilemap game object which uses 18x18 pixel tiles, and is
         // 45 tiles wide and 25 tiles tall.
-        this.map = this.add.tilemap("platformer-level-2", 18, 18, 100, 20);
+        this.map = this.add.tilemap("platformer-level-2", 18, 18, 80, 20);
 
         // Add a tileset to the map
         // First parameter: name we gave the tileset in Tiled
@@ -30,16 +32,53 @@ class Platformer2 extends Phaser.Scene {
             collides: true
         });
 
+        this.Fglass = this.map.createFromObjects("Objects", {
+            name: "Fglass",
+            key: "tilemap_sheet_food",
+            frame: 82
+        });
+
+        this.Eglass = this.map.createFromObjects("Objects", {
+            name: "Eglass",
+            key: "tilemap_sheet_food",
+            frame: 98
+        });
+
+        for (let i = 0; i < this.Fglass.length; i++){
+            this.Fglass[i].x = this.Fglass[i].x * 2
+            this.Fglass[i].y = this.Fglass[i].y * 2
+        }
+
+        for (let i = 0; i < this.Eglass.length; i++){
+            this.Eglass[i].x = this.Eglass[i].x * 2
+            this.Eglass[i].y = this.Eglass[i].y * 2
+        }
+
+        this.physics.world.enable(this.Fglass, Phaser.Physics.Arcade.STATIC_BODY);
+        this.physics.world.enable(this.Eglass, Phaser.Physics.Arcade.STATIC_BODY);
+
+        this.FglassGroup = this.add.group(this.Fglass);
+        this.EglassGroup = this.add.group(this.Eglass);
+
         // set up player avatar
         my.sprite.player = this.physics.add.sprite(game.config.width/11, game.config.height/2, "platformer_characters", "tile_0000.png").setScale(SCALE)
-        my.sprite.player.setCollideWorldBounds(true);
+        //my.sprite.player.setCollideWorldBounds(true);
 
         // Enable collision handling
         this.physics.add.collider(my.sprite.player, this.groundLayer);
 
-        this.physics.add.overlap(my.sprite.player, this.coinGroup, (obj1, obj2) => {
+        this.physics.add.overlap(my.sprite.player, this.FglassGroup, (obj1, obj2) => {
             obj2.destroy(); // remove coin on overlap
+            count += 1
         });
+
+       
+        this.physics.add.overlap(my.sprite.player, this.EglassGroup, (obj1, obj3) => {
+            if (count >= 1){
+            obj3.destroy(); // remove coin on overlap
+            end = true;
+            };
+       });
 
         // set up Phaser-provided cursor key input
         cursors = this.input.keyboard.createCursorKeys();
@@ -50,7 +89,7 @@ class Platformer2 extends Phaser.Scene {
             this.physics.world.debugGraphic.clear()
         }, this);
 
-        this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+       
         this.cameras.main.startFollow(my.sprite.player, true, 0.25, 0.25); // (target, [,roundPixels][,lerpX][,lerpY])
         this.cameras.main.setDeadzone(50, 50);
         this.cameras.main.setZoom(this.SCALE);
