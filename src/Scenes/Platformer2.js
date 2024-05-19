@@ -1,6 +1,7 @@
 class Platformer2 extends Phaser.Scene {
     constructor() {
         super("platformerScene2");
+        this.end = 0;
     }
 
     init() {
@@ -12,8 +13,9 @@ class Platformer2 extends Phaser.Scene {
     }
 
     create() {
+
         let count = 0
-        let end = false
+        let end = 0
         // Create a new tilemap game object which uses 18x18 pixel tiles, and is
         // 45 tiles wide and 25 tiles tall.
         this.map = this.add.tilemap("platformer-level-2", 18, 18, 80, 20);
@@ -76,7 +78,7 @@ class Platformer2 extends Phaser.Scene {
         this.physics.add.overlap(my.sprite.player, this.EglassGroup, (obj1, obj3) => {
             if (count >= 1){
             obj3.destroy(); // remove coin on overlap
-            end = true;
+            this.end += 1;
             };
        });
 
@@ -123,6 +125,9 @@ class Platformer2 extends Phaser.Scene {
         if(my.sprite.player.body.blocked.down && Phaser.Input.Keyboard.JustDown(cursors.up)) {
             my.sprite.player.body.setVelocityY(this.JUMP_VELOCITY);
 
+        }
+        if(this.end >= 1){
+            this.scene.start("TheEnd")
         }
     }
 }
