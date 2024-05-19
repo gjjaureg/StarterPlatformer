@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "platformer-level-1.tmj",
+    "activeFile": "platformer-level-2.tmj",
     "expandedProjectPaths": [
         "."
     ],
@@ -34,8 +34,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 25,
-                "y": 315.5
+                "x": 26,
+                "y": 45.5
             }
         },
         "platformer-level-2.tmj#kenny_tilemap_packed_food": {
@@ -58,8 +58,8 @@
     "project": "Starter Patformer.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "platformer-level-2.tmj",
-        "platformer-level-1.tmj"
+        "platformer-level-1.tmj",
+        "platformer-level-2.tmj"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {
