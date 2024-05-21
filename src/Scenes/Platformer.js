@@ -7,10 +7,11 @@ class Platformer extends Phaser.Scene {
 
     init() {
         // variables and settings
-        this.ACCELERATION = 500;
-        this.DRAG = 700;    // DRAG < ACCELERATION = icy slide
-        this.physics.world.gravity.y = 1500;
-        this.JUMP_VELOCITY = -900;
+        this.ACCELERATION = 200;
+        this.DRAG = 1000;    // DRAG < ACCELERATION = icy slide
+        this.physics.world.gravity.y = 1000;
+        this.JUMP_VELOCITY = -500;
+        this.PARTICLE_VELOCITY = 50;
     }
 
     create() {
@@ -81,6 +82,17 @@ class Platformer extends Phaser.Scene {
         this.cameras.main.setDeadzone(50, 50);
         this.cameras.main.setZoom(this.SCALE);
 
+        my.vfx.walking = this.add.particles(0, 0, "kenny-particles", {
+            frame: ['smoke_03.png', 'smoke_09.png'],
+            random: true,
+            scale: {start: 0.03, end: 0.1},
+            maxAliveParticles: 8,
+            lifespan: 350,
+            gravityY: -400,
+            alpha: {start: 1, end: 0.1}, 
+        });
+
+        my.vfx.walking.stop();
 
     }
 
@@ -90,17 +102,37 @@ class Platformer extends Phaser.Scene {
             
             my.sprite.player.resetFlip();
             my.sprite.player.anims.play('walk', true);
+            my.vfx.walking.startFollow(my.sprite.player, my.sprite.player.displayWidth/2-10, my.sprite.player.displayHeight/2-5, false);
+
+            my.vfx.walking.setParticleSpeed(this.PARTICLE_VELOCITY, 0);
+            if (my.sprite.player.body.blocked.down) {
+
+                my.vfx.walking.start();
+
+            }
 
         } else if(cursors.right.isDown) {
             my.sprite.player.body.setAccelerationX(this.ACCELERATION);
 
             my.sprite.player.setFlip(true, false);
             my.sprite.player.anims.play('walk', true);
+            my.vfx.walking.startFollow(my.sprite.player, my.sprite.player.displayWidth/2-10, my.sprite.player.displayHeight/2-5, false);
+
+            my.vfx.walking.setParticleSpeed(this.PARTICLE_VELOCITY, 0);
+
+            // Only play smoke effect if touching the ground
+
+            if (my.sprite.player.body.blocked.down) {
+
+                my.vfx.walking.start();
+
+            }
 
         } else {
             my.sprite.player.body.setAccelerationX(0);
             my.sprite.player.body.setDragX(this.DRAG);
             my.sprite.player.anims.play('idle');
+            my.vfx.walking.stop();
         }
 
         // player jump
@@ -113,12 +145,9 @@ class Platformer extends Phaser.Scene {
 
         }
 
-        if (Phaser.Input.Keyboard.JustDown(this.nextScene)) {
+
+        if (this.count >= 32) {
             this.scene.start("loadScene2");
         }
-
-       // if (this.count >= 32) {
-           // this.scene.start("loadScene2");
-      //  }
     }
 }
